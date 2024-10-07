@@ -23,7 +23,7 @@ namespace ApiECommerce.Entities
         public string? UrlImage { get; set; }
 
         [StringLength(80)]
-        public string? Phone { get; set; }
+        public string? PhoneNumber { get; set; }
 
         [NotMapped]
         public IFormFile? Image { get; set; }

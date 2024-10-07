@@ -55,14 +55,12 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-
 // Add services to the container.
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
 
 var connection = builder.Configuration.GetConnectionString("DefaultConnection");
 
@@ -85,7 +83,6 @@ else
     await context!.Database.MigrateAsync();
     app.UseSwagger();
     app.UseSwaggerUI();
-    
 }
 
 //For use static image files on wwwroot

@@ -1,0 +1,6 @@
+@ApiEcommerce_HostAddress = https://localhost:7018
+
+GET {{ApiEcommerce_HostAddress}}/api/Products?Search=popular&categoryId=2
+
+###
+
