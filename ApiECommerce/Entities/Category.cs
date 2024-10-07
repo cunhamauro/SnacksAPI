@@ -13,7 +13,7 @@ namespace ApiECommerce.Entities
 
         [Required]
         [StringLength(200)]
-        public string? UrlImage { get; set; }
+        public string? ImageUrl { get; set; }
 
         [JsonIgnore]
         public ICollection<Product>? Products { get; set; }

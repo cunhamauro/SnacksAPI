@@ -18,7 +18,7 @@ namespace ApiECommerce.Entities
 
         [Required]
         [StringLength(200)]
-        public string? UrlImage { get; set; }
+        public string? ImageUrl { get; set; }
 
         [Required]
         [Column(TypeName ="decimal(10,2)")]

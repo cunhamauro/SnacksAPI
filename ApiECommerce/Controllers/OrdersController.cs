@@ -139,7 +139,7 @@ namespace ApiECommerce.Controllers
                     Quantity = od.Quantity,
                     SubTotal = od.Total,
                     ProductName = od.Product!.Name,
-                    ProductImage = od.Product.UrlImage,
+                    ProductImage = od.Product.ImageUrl,
                     Price = od.Product.Price
                 })
                 .ToListAsync();
