@@ -42,7 +42,7 @@ namespace ApiECommerce.Controllers
                 Id = p.Id,
                 Name = p.Name,
                 Price = p.Price,
-                UrlImage = p.ImageUrl
+                ImageUrl = p.ImageUrl
             });
 
             return Ok(Products);
