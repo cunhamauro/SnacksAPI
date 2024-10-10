@@ -39,7 +39,7 @@ namespace ApiECommerce.Controllers
                                            Quantity = s.Quantity,
                                            ProductId = p.Id,
                                            ProductName = p.Name,
-                                           UrlImage = p.ImageUrl
+                                           ImageUrl = p.ImageUrl
                                        }).ToListAsync();
 
             return Ok(shoppingCartItems);

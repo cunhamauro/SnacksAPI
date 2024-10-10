@@ -65,7 +65,7 @@ namespace ApiECommerce.Controllers
                 Name = product.Name,
                 Price = product.Price,
                 Details = product.Details,
-                UrlImage = product.ImageUrl
+                ImageUrl = product.ImageUrl
             };
 
             return Ok(productDetail);
