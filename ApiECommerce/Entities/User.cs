@@ -20,7 +20,7 @@ namespace ApiECommerce.Entities
         public string? Password { get; set; }
 
         [StringLength(100)]
-        public string? UrlImage { get; set; }
+        public string? ImageUrl { get; set; }
 
         [StringLength(80)]
         public string? PhoneNumber { get; set; }

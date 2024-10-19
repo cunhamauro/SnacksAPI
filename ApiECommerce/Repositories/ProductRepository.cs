@@ -20,12 +20,12 @@ namespace ApiECommerce.Repositories
 
         public async Task<IEnumerable<Product>> GetPopularProductsAsync()
         {
-            return await _context.Products.Where(p => p.Popular).ToListAsync();
+            return await _context.Products.Where(p => p.Popular).AsNoTracking().ToListAsync();
         }
 
         public async Task<Product> GetProductDetailsAsync(int id)
         {
-            var productDetail = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
+            var productDetail = await _context.Products.AsNoTracking().FirstOrDefaultAsync(p => p.Id == id);
 
             //if (productDetail is null) throw new InvalidOperationException("O produto procurado não existe");
 
@@ -34,7 +34,7 @@ namespace ApiECommerce.Repositories
 
         public async Task<IEnumerable<Product>> GetProductsByCategoryAsync(int categoryId)
         {
-            return await _context.Products.Where(p => p.CategoryId == categoryId).ToListAsync();
+            return await _context.Products.Where(p => p.CategoryId == categoryId).AsNoTracking().ToListAsync();
         }
     }
 }

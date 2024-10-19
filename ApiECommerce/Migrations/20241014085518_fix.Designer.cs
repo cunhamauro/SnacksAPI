@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiECommerce.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20241007101946_fixPhoneNumber")]
-    partial class fixPhoneNumber
+    [Migration("20241014085518_fix")]
+    partial class fix
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,15 +33,15 @@ namespace ApiECommerce.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("UrlImage")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
 
                     b.HasKey("Id");
 
@@ -51,38 +51,38 @@ namespace ApiECommerce.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Snacks",
-                            UrlImage = "lanches1.png"
+                            ImageUrl = "lanches1.png",
+                            Name = "Snacks"
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Combos",
-                            UrlImage = "combos1.png"
+                            ImageUrl = "combos1.png",
+                            Name = "Combos"
                         },
                         new
                         {
                             Id = 3,
-                            Name = "Natural",
-                            UrlImage = "naturais1.png"
+                            ImageUrl = "naturais1.png",
+                            Name = "Natural"
                         },
                         new
                         {
                             Id = 4,
-                            Name = "Drinks",
-                            UrlImage = "refrigerantes1.png"
+                            ImageUrl = "refrigerantes1.png",
+                            Name = "Drinks"
                         },
                         new
                         {
                             Id = 5,
-                            Name = "Juices",
-                            UrlImage = "sucos1.png"
+                            ImageUrl = "sucos1.png",
+                            Name = "Juices"
                         },
                         new
                         {
                             Id = 6,
-                            Name = "Desserts",
-                            UrlImage = "sobremesas1.png"
+                            ImageUrl = "sobremesas1.png",
+                            Name = "Desserts"
                         });
                 });
 
@@ -167,6 +167,11 @@ namespace ApiECommerce.Migrations
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)");
 
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -180,11 +185,6 @@ namespace ApiECommerce.Migrations
 
                     b.Property<int>("Stock")
                         .HasColumnType("int");
-
-                    b.Property<string>("UrlImage")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
 
                     b.HasKey("Id");
 
@@ -200,11 +200,11 @@ namespace ApiECommerce.Migrations
                             BestSeller = true,
                             CategoryId = 1,
                             Details = "Soft bread, seasoned beef hamburger, onion, mustard, and ketchup ",
+                            ImageUrl = "hamburger1.jpeg",
                             Name = "Standard Hamburger",
                             Popular = true,
                             Price = 15m,
-                            Stock = 13,
-                            UrlImage = "hamburger1.jpeg"
+                            Stock = 13
                         },
                         new
                         {
@@ -213,11 +213,11 @@ namespace ApiECommerce.Migrations
                             BestSeller = false,
                             CategoryId = 1,
                             Details = "Soft bread, seasoned beef hamburger, and cheese all around.",
+                            ImageUrl = "hamburger3.jpeg",
                             Name = "Standard Cheeseburger",
                             Popular = true,
                             Price = 18m,
-                            Stock = 10,
-                            UrlImage = "hamburger3.jpeg"
+                            Stock = 10
                         },
                         new
                         {
@@ -226,11 +226,11 @@ namespace ApiECommerce.Migrations
                             BestSeller = false,
                             CategoryId = 1,
                             Details = "Soft bread, seasoned beef hamburger, onion, lettuce, mustard, and ketchup ",
+                            ImageUrl = "hamburger4.jpeg",
                             Name = "Standard Cheese Salad",
                             Popular = false,
                             Price = 19m,
-                            Stock = 13,
-                            UrlImage = "hamburger4.jpeg"
+                            Stock = 13
                         },
                         new
                         {
@@ -239,11 +239,11 @@ namespace ApiECommerce.Migrations
                             BestSeller = false,
                             CategoryId = 2,
                             Details = "Soft bread, seasoned beef hamburger and cheese, soda, and fries",
+                            ImageUrl = "combo1.jpeg",
                             Name = "Hamburger, fries, soda",
                             Popular = true,
                             Price = 25m,
-                            Stock = 10,
-                            UrlImage = "combo1.jpeg"
+                            Stock = 10
                         },
                         new
                         {
@@ -252,11 +252,11 @@ namespace ApiECommerce.Migrations
                             BestSeller = false,
                             CategoryId = 2,
                             Details = "Soft bread, seasoned beef hamburger, soda, and fries, onion, mayonnaise, and ketchup",
+                            ImageUrl = "combo2.jpeg",
                             Name = "Cheeseburger, fries, soda",
                             Popular = false,
                             Price = 27m,
-                            Stock = 13,
-                            UrlImage = "combo2.jpeg"
+                            Stock = 13
                         },
                         new
                         {
@@ -265,11 +265,11 @@ namespace ApiECommerce.Migrations
                             BestSeller = false,
                             CategoryId = 2,
                             Details = "Soft bread, seasoned beef hamburger, soda, and fries, onion, mayonnaise, and ketchup",
+                            ImageUrl = "combo3.jpeg",
                             Name = "Cheese Salad, fries, soda",
                             Popular = true,
                             Price = 28m,
-                            Stock = 10,
-                            UrlImage = "combo3.jpeg"
+                            Stock = 10
                         },
                         new
                         {
@@ -278,11 +278,11 @@ namespace ApiECommerce.Migrations
                             BestSeller = false,
                             CategoryId = 3,
                             Details = "Whole grain bread with greens and tomato",
+                            ImageUrl = "lanche_natural1.jpeg",
                             Name = "Natural Snack with greens",
                             Popular = false,
                             Price = 14m,
-                            Stock = 13,
-                            UrlImage = "lanche_natural1.jpeg"
+                            Stock = 13
                         },
                         new
                         {
@@ -291,11 +291,11 @@ namespace ApiECommerce.Migrations
                             BestSeller = false,
                             CategoryId = 3,
                             Details = "Whole grain bread, greens, tomato, and cheese.",
+                            ImageUrl = "lanche_natural2.jpeg",
                             Name = "Natural Snack and cheese",
                             Popular = true,
                             Price = 15m,
-                            Stock = 10,
-                            UrlImage = "lanche_natural2.jpeg"
+                            Stock = 10
                         },
                         new
                         {
@@ -304,11 +304,11 @@ namespace ApiECommerce.Migrations
                             BestSeller = false,
                             CategoryId = 3,
                             Details = "Vegan snack with healthy ingredients",
+                            ImageUrl = "lanche_vegano1.jpeg",
                             Name = "Vegan Snack",
                             Popular = false,
                             Price = 25m,
-                            Stock = 18,
-                            UrlImage = "lanche_vegano1.jpeg"
+                            Stock = 18
                         },
                         new
                         {
@@ -317,11 +317,11 @@ namespace ApiECommerce.Migrations
                             BestSeller = false,
                             CategoryId = 4,
                             Details = "Coca-Cola soda",
+                            ImageUrl = "coca_cola1.jpeg",
                             Name = "Coca-Cola",
                             Popular = true,
                             Price = 21m,
-                            Stock = 7,
-                            UrlImage = "coca_cola1.jpeg"
+                            Stock = 7
                         },
                         new
                         {
@@ -330,11 +330,11 @@ namespace ApiECommerce.Migrations
                             BestSeller = false,
                             CategoryId = 4,
                             Details = "Guaraná soda",
+                            ImageUrl = "guarana1.jpeg",
                             Name = "Guaraná",
                             Popular = false,
                             Price = 25m,
-                            Stock = 6,
-                            UrlImage = "guarana1.jpeg"
+                            Stock = 6
                         },
                         new
                         {
@@ -343,11 +343,11 @@ namespace ApiECommerce.Migrations
                             BestSeller = false,
                             CategoryId = 4,
                             Details = "Pepsi Cola soda",
+                            ImageUrl = "pepsi1.jpeg",
                             Name = "Pepsi",
                             Popular = false,
                             Price = 21m,
-                            Stock = 6,
-                            UrlImage = "pepsi1.jpeg"
+                            Stock = 6
                         },
                         new
                         {
@@ -356,11 +356,11 @@ namespace ApiECommerce.Migrations
                             BestSeller = false,
                             CategoryId = 5,
                             Details = "Delicious and nutritious orange juice",
+                            ImageUrl = "suco_laranja.jpeg",
                             Name = "Orange Juice",
                             Popular = false,
                             Price = 11m,
-                            Stock = 10,
-                            UrlImage = "suco_laranja.jpeg"
+                            Stock = 10
                         },
                         new
                         {
@@ -369,11 +369,11 @@ namespace ApiECommerce.Migrations
                             BestSeller = false,
                             CategoryId = 5,
                             Details = "Fresh strawberry juice",
+                            ImageUrl = "suco_morango1.jpeg",
                             Name = "Strawberry Juice",
                             Popular = false,
                             Price = 15m,
-                            Stock = 13,
-                            UrlImage = "suco_morango1.jpeg"
+                            Stock = 13
                         },
                         new
                         {
@@ -382,11 +382,11 @@ namespace ApiECommerce.Migrations
                             BestSeller = false,
                             CategoryId = 5,
                             Details = "Natural grape juice without sugar made with the fruit",
+                            ImageUrl = "suco_uva1.jpeg",
                             Name = "Grape Juice",
                             Popular = false,
                             Price = 13m,
-                            Stock = 10,
-                            UrlImage = "suco_uva1.jpeg"
+                            Stock = 10
                         },
                         new
                         {
@@ -395,11 +395,11 @@ namespace ApiECommerce.Migrations
                             BestSeller = false,
                             CategoryId = 4,
                             Details = "Fresh natural mineral water",
+                            ImageUrl = "agua_mineral1.jpeg",
                             Name = "Water",
                             Popular = false,
                             Price = 5m,
-                            Stock = 10,
-                            UrlImage = "agua_mineral1.jpeg"
+                            Stock = 10
                         },
                         new
                         {
@@ -408,11 +408,11 @@ namespace ApiECommerce.Migrations
                             BestSeller = false,
                             CategoryId = 6,
                             Details = "Chocolate cookies with chocolate chunks",
+                            ImageUrl = "cookie1.jpeg",
                             Name = "Chocolate Cookies",
                             Popular = true,
                             Price = 8m,
-                            Stock = 10,
-                            UrlImage = "cookie1.jpeg"
+                            Stock = 10
                         },
                         new
                         {
@@ -421,11 +421,11 @@ namespace ApiECommerce.Migrations
                             BestSeller = true,
                             CategoryId = 6,
                             Details = "Delicious and crunchy vanilla cookies",
+                            ImageUrl = "cookie2.jpeg",
                             Name = "Vanilla Cookies",
                             Popular = false,
                             Price = 8m,
-                            Stock = 13,
-                            UrlImage = "cookie2.jpeg"
+                            Stock = 13
                         },
                         new
                         {
@@ -434,11 +434,11 @@ namespace ApiECommerce.Migrations
                             BestSeller = false,
                             CategoryId = 6,
                             Details = "Swiss pie with cream and layers of dulce de leche",
+                            ImageUrl = "torta_suica1.jpeg",
                             Name = "Swiss Pie",
                             Popular = true,
                             Price = 10m,
-                            Stock = 10,
-                            UrlImage = "torta_suica1.jpeg"
+                            Stock = 10
                         });
                 });
 
@@ -485,6 +485,10 @@ namespace ApiECommerce.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
+                    b.Property<string>("ImageUrl")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<string>("Name")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
@@ -497,10 +501,6 @@ namespace ApiECommerce.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasMaxLength(80)
                         .HasColumnType("nvarchar(80)");
-
-                    b.Property<string>("UrlImage")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 

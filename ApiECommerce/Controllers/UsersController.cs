@@ -102,7 +102,7 @@ namespace ApiECommerce.Controllers
                     await image.CopyToAsync(stream);
                 }
 
-                user.UrlImage = $"/userimages/{uniqueFileName}";
+                user.ImageUrl = $"/userimages/{uniqueFileName}";
 
                 await _context.SaveChangesAsync();
                 return Ok("Image uploaded successfully!");
@@ -129,7 +129,7 @@ namespace ApiECommerce.Controllers
                 .Where(x => x.Email == userEmail)
                 .Select(x => new
                 {
-                    x.UrlImage,
+                    x.ImageUrl,
                 })
                 .SingleOrDefaultAsync();
 

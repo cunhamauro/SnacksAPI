@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ApiECommerce.Migrations
 {
     /// <inheritdoc />
-    public partial class InitDb : Migration
+    public partial class fix : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -20,7 +20,7 @@ namespace ApiECommerce.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    UrlImage = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false)
+                    ImageUrl = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -36,8 +36,8 @@ namespace ApiECommerce.Migrations
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     Password = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    UrlImage = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
-                    Phone = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: true)
+                    ImageUrl = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -52,7 +52,7 @@ namespace ApiECommerce.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Details = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
-                    UrlImage = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     Price = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
                     Popular = table.Column<bool>(type: "bit", nullable: false),
                     BestSeller = table.Column<bool>(type: "bit", nullable: false),
@@ -147,41 +147,41 @@ namespace ApiECommerce.Migrations
 
             migrationBuilder.InsertData(
                 table: "Categories",
-                columns: new[] { "Id", "Name", "UrlImage" },
+                columns: new[] { "Id", "ImageUrl", "Name" },
                 values: new object[,]
                 {
-                    { 1, "Snacks", "lanches1.png" },
-                    { 2, "Combos", "combos1.png" },
-                    { 3, "Natural", "naturais1.png" },
-                    { 4, "Drinks", "refrigerantes1.png" },
-                    { 5, "Juices", "sucos1.png" },
-                    { 6, "Desserts", "sobremesas1.png" }
+                    { 1, "lanches1.png", "Snacks" },
+                    { 2, "combos1.png", "Combos" },
+                    { 3, "naturais1.png", "Natural" },
+                    { 4, "refrigerantes1.png", "Drinks" },
+                    { 5, "sucos1.png", "Juices" },
+                    { 6, "sobremesas1.png", "Desserts" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "Id", "Available", "BestSeller", "CategoryId", "Details", "Name", "Popular", "Price", "Stock", "UrlImage" },
+                columns: new[] { "Id", "Available", "BestSeller", "CategoryId", "Details", "ImageUrl", "Name", "Popular", "Price", "Stock" },
                 values: new object[,]
                 {
-                    { 1, true, true, 1, "Soft bread, seasoned beef hamburger, onion, mustard, and ketchup ", "Standard Hamburger", true, 15m, 13, "hamburger1.jpeg" },
-                    { 2, true, false, 1, "Soft bread, seasoned beef hamburger, and cheese all around.", "Standard Cheeseburger", true, 18m, 10, "hamburger3.jpeg" },
-                    { 3, true, false, 1, "Soft bread, seasoned beef hamburger, onion, lettuce, mustard, and ketchup ", "Standard Cheese Salad", false, 19m, 13, "hamburger4.jpeg" },
-                    { 4, false, false, 2, "Soft bread, seasoned beef hamburger and cheese, soda, and fries", "Hamburger, fries, soda", true, 25m, 10, "combo1.jpeg" },
-                    { 5, true, false, 2, "Soft bread, seasoned beef hamburger, soda, and fries, onion, mayonnaise, and ketchup", "Cheeseburger, fries, soda", false, 27m, 13, "combo2.jpeg" },
-                    { 6, true, false, 2, "Soft bread, seasoned beef hamburger, soda, and fries, onion, mayonnaise, and ketchup", "Cheese Salad, fries, soda", true, 28m, 10, "combo3.jpeg" },
-                    { 7, true, false, 3, "Whole grain bread with greens and tomato", "Natural Snack with greens", false, 14m, 13, "lanche_natural1.jpeg" },
-                    { 8, true, false, 3, "Whole grain bread, greens, tomato, and cheese.", "Natural Snack and cheese", true, 15m, 10, "lanche_natural2.jpeg" },
-                    { 9, true, false, 3, "Vegan snack with healthy ingredients", "Vegan Snack", false, 25m, 18, "lanche_vegano1.jpeg" },
-                    { 10, true, false, 4, "Coca-Cola soda", "Coca-Cola", true, 21m, 7, "coca_cola1.jpeg" },
-                    { 11, true, false, 4, "Guaraná soda", "Guaraná", false, 25m, 6, "guarana1.jpeg" },
-                    { 12, true, false, 4, "Pepsi Cola soda", "Pepsi", false, 21m, 6, "pepsi1.jpeg" },
-                    { 13, true, false, 5, "Delicious and nutritious orange juice", "Orange Juice", false, 11m, 10, "suco_laranja.jpeg" },
-                    { 14, true, false, 5, "Fresh strawberry juice", "Strawberry Juice", false, 15m, 13, "suco_morango1.jpeg" },
-                    { 15, true, false, 5, "Natural grape juice without sugar made with the fruit", "Grape Juice", false, 13m, 10, "suco_uva1.jpeg" },
-                    { 16, true, false, 4, "Fresh natural mineral water", "Water", false, 5m, 10, "agua_mineral1.jpeg" },
-                    { 17, true, false, 6, "Chocolate cookies with chocolate chunks", "Chocolate Cookies", true, 8m, 10, "cookie1.jpeg" },
-                    { 18, true, true, 6, "Delicious and crunchy vanilla cookies", "Vanilla Cookies", false, 8m, 13, "cookie2.jpeg" },
-                    { 19, true, false, 6, "Swiss pie with cream and layers of dulce de leche", "Swiss Pie", true, 10m, 10, "torta_suica1.jpeg" }
+                    { 1, true, true, 1, "Soft bread, seasoned beef hamburger, onion, mustard, and ketchup ", "hamburger1.jpeg", "Standard Hamburger", true, 15m, 13 },
+                    { 2, true, false, 1, "Soft bread, seasoned beef hamburger, and cheese all around.", "hamburger3.jpeg", "Standard Cheeseburger", true, 18m, 10 },
+                    { 3, true, false, 1, "Soft bread, seasoned beef hamburger, onion, lettuce, mustard, and ketchup ", "hamburger4.jpeg", "Standard Cheese Salad", false, 19m, 13 },
+                    { 4, false, false, 2, "Soft bread, seasoned beef hamburger and cheese, soda, and fries", "combo1.jpeg", "Hamburger, fries, soda", true, 25m, 10 },
+                    { 5, true, false, 2, "Soft bread, seasoned beef hamburger, soda, and fries, onion, mayonnaise, and ketchup", "combo2.jpeg", "Cheeseburger, fries, soda", false, 27m, 13 },
+                    { 6, true, false, 2, "Soft bread, seasoned beef hamburger, soda, and fries, onion, mayonnaise, and ketchup", "combo3.jpeg", "Cheese Salad, fries, soda", true, 28m, 10 },
+                    { 7, true, false, 3, "Whole grain bread with greens and tomato", "lanche_natural1.jpeg", "Natural Snack with greens", false, 14m, 13 },
+                    { 8, true, false, 3, "Whole grain bread, greens, tomato, and cheese.", "lanche_natural2.jpeg", "Natural Snack and cheese", true, 15m, 10 },
+                    { 9, true, false, 3, "Vegan snack with healthy ingredients", "lanche_vegano1.jpeg", "Vegan Snack", false, 25m, 18 },
+                    { 10, true, false, 4, "Coca-Cola soda", "coca_cola1.jpeg", "Coca-Cola", true, 21m, 7 },
+                    { 11, true, false, 4, "Guaraná soda", "guarana1.jpeg", "Guaraná", false, 25m, 6 },
+                    { 12, true, false, 4, "Pepsi Cola soda", "pepsi1.jpeg", "Pepsi", false, 21m, 6 },
+                    { 13, true, false, 5, "Delicious and nutritious orange juice", "suco_laranja.jpeg", "Orange Juice", false, 11m, 10 },
+                    { 14, true, false, 5, "Fresh strawberry juice", "suco_morango1.jpeg", "Strawberry Juice", false, 15m, 13 },
+                    { 15, true, false, 5, "Natural grape juice without sugar made with the fruit", "suco_uva1.jpeg", "Grape Juice", false, 13m, 10 },
+                    { 16, true, false, 4, "Fresh natural mineral water", "agua_mineral1.jpeg", "Water", false, 5m, 10 },
+                    { 17, true, false, 6, "Chocolate cookies with chocolate chunks", "cookie1.jpeg", "Chocolate Cookies", true, 8m, 10 },
+                    { 18, true, true, 6, "Delicious and crunchy vanilla cookies", "cookie2.jpeg", "Vanilla Cookies", false, 8m, 13 },
+                    { 19, true, false, 6, "Swiss pie with cream and layers of dulce de leche", "torta_suica1.jpeg", "Swiss Pie", true, 10m, 10 }
                 });
 
             migrationBuilder.CreateIndex(
